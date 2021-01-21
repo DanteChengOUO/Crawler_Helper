@@ -4,6 +4,7 @@ def get_post_url(date_array)
   post_url_all = []
 
   table.each do |t|
+    table_title = t[0].to_s.gsub("https://www.ptt.cc//bbs/", "").gsub("/index.html", "")
     sleep(rand(0.1..0.4))
     next_url = t[0]
     p next_url
@@ -43,7 +44,7 @@ def get_post_url(date_array)
     end 
     post_url_all << post_url
     File.write("#{Rails.root}/data/PTT/post_url.csv", post_url_all.flatten(1).map(&:to_csv).join)
-    get_post_content()
+    get_content()
     mv_files(table_title)
   end 
 end
