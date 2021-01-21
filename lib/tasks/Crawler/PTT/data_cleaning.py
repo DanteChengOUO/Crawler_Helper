@@ -22,7 +22,7 @@ post = post.dropna()
 comment = comment.dropna()
 
 # board: url name alias 
-board["name"] = board["url"].str.replace("https://www.ptt.cc//bbs/", "")
+board["name"] = board["url"].str.replace("https://www.ptt.cc/bbs/", "")
 board["name"] = board["name"].str.replace("/index.html","")
 board["alias"] = 'ptt_' + board["name"].str[:]
 board["name"] = board["alias"]
