@@ -13,9 +13,9 @@ import ast
 pd.options.mode.chained_assignment = None
 segmenter = CkipSegmenter()
 
-board = pd.read_csv("lib/tasks/Crawler/PTT/ptt_boards_url.csv", names = ["url"])
-post = pd.read_csv("lib/tasks/Crawler/PTT/ptt_post_content.csv", names = ["alias","url","author","title", "created_at", "comment_count","content"])
-comment = pd.read_csv("lib/tasks/Crawler/PTT/ptt_comment_content.csv", names = ["alias", "url", "author", "created_at","content"])
+board = pd.read_csv("data/PTT/analysis/boards_url.csv", names = ["url"])
+post = pd.read_csv("data/PTT/analysis/post_content.csv", names = ["alias","url","author","title", "created_at", "comment_count","content"])
+comment = pd.read_csv("data/PTT/analysis/comment_content.csv", names = ["alias", "url", "author", "created_at","content"])
 
 # drop 欄位對不上的資料
 post = post.dropna()
@@ -102,7 +102,7 @@ def pos_tagging(seg_list):
     return ""
 
 # stopwords 
-with open("lib/tasks/Crawler/PTT/dict/stopwords.txt", encoding="utf-8") as fin:
+with open("data/PTT/analysis/dict/stopwords.txt", encoding="utf-8") as fin:
   stopwords = fin.read().split("\n")[1:]
 
 def no_stop(item):
@@ -119,10 +119,10 @@ def keyword(doc):
   return keywords
 
 # sentiment 
-with open("lib/tasks/Crawler/PTT/dict/pos.txt", encoding="utf-8") as pos:
+with open("data/PTT/analysis/dict/pos.txt", encoding="utf-8") as pos:
   pos_words = pos.read().split("\n")[1:]
 
-with open("lib/tasks/Crawler/PTT/dict/neg.txt", encoding="utf-8") as neg:
+with open("data/PTT/analysis/dict/neg.txt", encoding="utf-8") as neg:
   neg_words = neg.read().split("\n")[1:]
 
 def sentiment(token):
@@ -180,7 +180,7 @@ post = post.drop(['seg'], axis=1)
 comment = comment.drop(['seg'], axis=1)
 
 # save as csv
-board.to_csv("lib/tasks/Crawler/PTT/ptt_boards_url.csv",header=False)
-post.to_csv("lib/tasks/Crawler/PTT/ptt_post_content.csv",header=False)
-comment.to_csv("lib/tasks/Crawler/PTT/ptt_comment_content.csv",header=False)
+board.to_csv("data/PTT/analysis/boards_url.csv",header=False)
+post.to_csv("data/PTT/analysis/post_content.csv",header=False)
+comment.to_csv("data/PTT/analysis/comment_content.csv",header=False)
 

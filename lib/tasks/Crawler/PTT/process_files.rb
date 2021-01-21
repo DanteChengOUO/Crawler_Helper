@@ -44,8 +44,8 @@ end
 def mvfinish_files(table_title)
   clean_title = table_title
   Dir.mkdir("#{Rails.root}/data/PTT/#{clean_title}_finish") unless Dir.exists?("#{Rails.root}/data/PTT/#{clean_title}_finish")
-  FileUtils.mv("#{Rails.root}/data/PTT/analysis/post_url.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/")
-  FileUtils.mv("#{Rails.root}/data/PTT/analysis/post_content.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/")
-  FileUtils.mv("#{Rails.root}/data/PTT/analysis/comment_content.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/")
-  FileUtils.cp("#{Rails.root}/data/PTT/analysis/boards_url.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/")
+  FileUtils.mv("#{Rails.root}/data/PTT/analysis/post_url.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/ptt_post_url.csv")
+  FileUtils.mv("#{Rails.root}/data/PTT/analysis/post_content.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/ptt_post_content.csv")
+  FileUtils.mv("#{Rails.root}/data/PTT/analysis/comment_content.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/ptt_comment_content.csv")
+  FileUtils.cp("#{Rails.root}/data/PTT/analysis/boards_url.csv", "#{Rails.root}/data/PTT/#{clean_title}_finish/ptt_boards_url.csv")
 end
