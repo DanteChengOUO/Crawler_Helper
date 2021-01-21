@@ -1,4 +1,4 @@
-def get_post_content
+def get_content
   table = CSV.parse(File.read("#{Rails.root}/data/PTT/post_url.csv"), headers: false)
 
   all_post = []
@@ -65,7 +65,6 @@ def get_post_content
       next
     end
   end 
-
   File.write("#{Rails.root}/data/PTT/post_content.csv", all_post.map(&:to_csv).join)
   File.write("#{Rails.root}/data/PTT/comment_content.csv", all_comment.map(&:to_csv).join)
 end 
